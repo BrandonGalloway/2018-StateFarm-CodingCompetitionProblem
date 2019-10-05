@@ -1,29 +1,45 @@
 package com.codingcompetition.statefarm;
 
-import com.codingcompetition.statefarm.model.PointOfInterest;
-import com.codingcompetition.statefarm.utility.PointOfInterestParser;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.logging.Logger;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
+import com.codingcompetition.statefarm.model.PointOfInterest;
+import com.codingcompetition.statefarm.utility.PointOfInterestParser;
 
 public class StreetMapDataInterpreter implements Interpreter {
 
-
-    public StreetMapDataInterpreter(String s) {
+	private PointOfInterestParser parser = new PointOfInterestParser();
+	private List<PointOfInterest> parsedPoi;
+	private static Logger log = Logger.getLogger(StreetMapDataInterpreter.class.getName());
+	
+	public StreetMapDataInterpreter(String s)
+    {
+		try {
+			this.parsedPoi = parser.parse(s);
+		} catch (IOException | SAXException | ParserConfigurationException e) {
+			log.severe("A error occured parsing the specified file");
+			e.printStackTrace();
+		}
     }
 
     @Override
     public List<PointOfInterest> interpret() {
-        return null;
+        return parsedPoi;
     }
 
     @Override
     public List<PointOfInterest> interpret(SearchCriteria criteria) {
+    	
+    	
+    	
+    	
         return null;
     }
 
