@@ -128,7 +128,6 @@ public class StreetMapDataInterpreterTest {
         List<SearchCriteria> criterias = new ArrayList<>();
         criterias.add(criteria);
         criterias.add(criteriaAmenity);
-        StreetMapDataInterpreter interpreter = new StreetMapDataInterpreter("/small-metro.xml");
         List<PointOfInterest> interpretedData = smallMetro.findByCriterias(criterias);
 
         assertThat(interpretedData.size(), equalTo(17));
